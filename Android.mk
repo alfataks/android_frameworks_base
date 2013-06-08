@@ -94,13 +94,8 @@ LOCAL_SRC_FILES += \
 	core/java/android/bluetooth/IBluetoothA2dp.aidl \
 	core/java/android/bluetooth/IBluetoothCallback.aidl \
 	core/java/android/bluetooth/IBluetoothHeadset.aidl \
-	core/java/android/bluetooth/IBluetoothHeadsetPhone.aidl \
-	core/java/android/bluetooth/IBluetoothHealth.aidl \
 	core/java/android/bluetooth/IBluetoothHealthCallback.aidl \
-	core/java/android/bluetooth/IBluetoothInputDevice.aidl \
-	core/java/android/bluetooth/IBluetoothPan.aidl \
 	core/java/android/bluetooth/IBluetoothManager.aidl \
-	core/java/android/bluetooth/IBluetoothManagerCallback.aidl \
 	core/java/android/bluetooth/IBluetoothPbap.aidl \
 	core/java/android/bluetooth/IBluetoothStateChangeCallback.aidl \
 	core/java/android/content/IClipboard.aidl \

@@ -9,6 +9,10 @@ LOCAL_SRC_FILES := \
 	    com/android/server/EventLogTags.logtags \
 	    com/android/server/am/EventLogTags.logtags
 
+    LOCAL_SRC_FILES := $(filter-out \
+                        com/android/server/BluetoothManagerService.java \
+                        ,$(LOCAL_SRC_FILES))
+
 LOCAL_MODULE:= services
 
 LOCAL_JAVA_LIBRARIES := android.policy telephony-common

@@ -1,5 +1,8 @@
 /*
  * Copyright (C) 2012 The Android Open Source Project
+ * Copyright (c) 2013 The Linux Foundation. All rights reserved.
+ * Not a Contribution, Apache license notifications and license are retained
+ * for attribution purposes only.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +19,6 @@
 
 package android.bluetooth;
 
-import android.bluetooth.IBluetooth;
-import android.bluetooth.IBluetoothManagerCallback;
-import android.bluetooth.IBluetoothStateChangeCallback;
-
 /**
  * System private API for talking with the Bluetooth service.
  *
@@ -27,15 +26,9 @@ import android.bluetooth.IBluetoothStateChangeCallback;
  */
 interface IBluetoothManager
 {
-    IBluetooth registerAdapter(in IBluetoothManagerCallback callback);
-    void unregisterAdapter(in IBluetoothManagerCallback callback);
-    void registerStateChangeCallback(in IBluetoothStateChangeCallback callback);
-    void unregisterStateChangeCallback(in IBluetoothStateChangeCallback callback);
     boolean isEnabled();
-    boolean enable();
+    boolean disable(boolean saveSetting);
     boolean enableNoAutoConnect();
-    boolean disable(boolean persist);
-
     String getAddress();
     String getName();
 }

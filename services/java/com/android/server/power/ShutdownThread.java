@@ -23,7 +23,7 @@ import android.app.Dialog;
 import android.app.IActivityManager;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.IBluetoothManager;
+import android.bluetooth.IBluetooth;
 import android.nfc.NfcAdapter;
 import android.nfc.INfcAdapter;
 import android.content.BroadcastReceiver;
@@ -415,9 +415,9 @@ public final class ShutdownThread extends Thread {
                         INfcAdapter.Stub.asInterface(ServiceManager.checkService("nfc"));
                 final ITelephony phone =
                         ITelephony.Stub.asInterface(ServiceManager.checkService("phone"));
-                final IBluetoothManager bluetooth =
-                        IBluetoothManager.Stub.asInterface(ServiceManager.checkService(
-                                BluetoothAdapter.BLUETOOTH_MANAGER_SERVICE));
+                final IBluetooth bluetooth =
+                        IBluetooth.Stub.asInterface(ServiceManager.checkService(
+                                BluetoothAdapter.BLUETOOTH_SERVICE));
 
                 try {
                     nfcOff = nfc == null ||
@@ -432,7 +432,8 @@ public final class ShutdownThread extends Thread {
                 }
 
                 try {
-                    bluetoothOff = bluetooth == null || !bluetooth.isEnabled();
+                    bluetoothOff = bluetooth == null ||
+                                   bluetooth.getBluetoothState() == BluetoothAdapter.STATE_OFF;
                     if (!bluetoothOff) {
                         Log.w(TAG, "Disabling Bluetooth...");
                         bluetooth.disable(false);  // disable but don't persist new state
@@ -458,7 +459,8 @@ public final class ShutdownThread extends Thread {
                 while (SystemClock.elapsedRealtime() < endTime) {
                     if (!bluetoothOff) {
                         try {
-                            bluetoothOff = !bluetooth.isEnabled();
+                            bluetoothOff =
+                                    bluetooth.getBluetoothState() == BluetoothAdapter.STATE_OFF;
                         } catch (RemoteException ex) {
                             Log.e(TAG, "RemoteException during bluetooth shutdown", ex);
                             bluetoothOff = true;

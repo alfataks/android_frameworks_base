@@ -2981,7 +2981,7 @@ public final class Settings {
         public static final String PIE_SEARCH = "pie_search";
 
         /**
-         * Pie gap angle, should default to 2
+         * Pie gap angle, should default to 3
          * @hide
          */
         public static final String PIE_GAP = "pie_gap";
@@ -3019,7 +3019,7 @@ public final class Settings {
         public static final String PIE_MODE = "pie_mode";
 
         /**
-         * Pie size fraction, default is 1.0f (normal)
+         * Pie size fraction
          * @hide
          */
         public static final String PIE_SIZE = "pie_size";
@@ -5245,6 +5245,30 @@ public final class Settings {
         public static final String BLUETOOTH_ON = Global.BLUETOOTH_ON;
 
         /**
+         * Get the key that retrieves a bluetooth headset's priority.
+         * @hide
+         */
+        public static final String getBluetoothHeadsetPriorityKey(String address) {
+            return ("bluetooth_headset_priority_" + address.toUpperCase());
+        }
+
+        /**
+         * Get the key that retrieves a bluetooth a2dp sink's priority.
+         * @hide
+         */
+        public static final String getBluetoothA2dpSinkPriorityKey(String address) {
+            return ("bluetooth_a2dp_sink_priority_" + address.toUpperCase());
+        }
+
+        /**
+         * Get the key that retrieves a bluetooth Input Device's priority.
+         * @hide
+         */
+        public static final String getBluetoothInputDevicePriorityKey(String address) {
+            return ("bluetooth_input_device_priority_" + address.toUpperCase());
+        }
+
+        /**
          * @deprecated Use {@link android.provider.Settings.Global#DATA_ROAMING} instead
          */
         @Deprecated
@@ -6201,6 +6225,13 @@ public final class Settings {
         public static final String UI_INVERTED_MODE = "ui_inverted_mode";
 
         /**
+         * force UI mode change for methods which are not observing
+         * UiModeManagerService
+         * @hide
+         */
+        public static final String UI_MODE_IS_TOGGLED = "ui_mode_is_toggled";
+
+        /**
          * Whether screensavers are enabled.
          * @hide
          */
@@ -6285,6 +6316,7 @@ public final class Settings {
             MOUNT_UMS_NOTIFY_ENABLED,
             UI_NIGHT_MODE,
             UI_INVERTED_MODE,
+            UI_MODE_IS_TOGGLED,
             LOCK_SCREEN_OWNER_INFO,
             LOCK_SCREEN_OWNER_INFO_ENABLED
         };
@@ -6573,6 +6605,14 @@ public final class Settings {
          * 0=disabled. 1=enabled.
          */
         public static final String BLUETOOTH_ON = "bluetooth_on";
+
+        /**
+         * Get the key that retrieves a bluetooth headset's priority.
+         * @hide
+         */
+        public static final String getBluetoothHeadsetPriorityKey(String address) {
+            return ("bluetooth_headset_priority_" + address.toUpperCase());
+        }
 
         /**
          * CDMA Cell Broadcast SMS
@@ -7447,14 +7487,6 @@ public final class Settings {
         /** {@hide} */
         public static final String
                 BLUETOOTH_INPUT_DEVICE_PRIORITY_PREFIX = "bluetooth_input_device_priority_";
-
-        /**
-         * Get the key that retrieves a bluetooth headset's priority.
-         * @hide
-         */
-        public static final String getBluetoothHeadsetPriorityKey(String address) {
-            return BLUETOOTH_HEADSET_PRIORITY_PREFIX + address.toUpperCase();
-        }
 
         /**
          * Get the key that retrieves a bluetooth a2dp sink's priority.

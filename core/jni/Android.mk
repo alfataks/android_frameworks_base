@@ -140,6 +140,14 @@ LOCAL_SRC_FILES:= \
 	android_util_FileObserver.cpp \
 	android/opengl/poly_clip.cpp.arm \
 	android/opengl/util.cpp.arm \
+	android_bluetooth_HeadsetBase.cpp \
+	android_bluetooth_common.cpp \
+	android_bluetooth_BluetoothAudioGateway.cpp \
+	android_bluetooth_BluetoothSocket.cpp \
+	android_bluetooth_c.c \
+	android_server_BluetoothService.cpp \
+	android_server_BluetoothEventLoop.cpp \
+	android_server_BluetoothA2dpService.cpp \
 	android_server_NetworkManagementSocketTagger.cpp \
 	android_server_Watchdog.cpp \
 	android_ddm_DdmHandleNativeHeap.cpp \
@@ -235,6 +243,14 @@ LOCAL_SRC_FILES+= \
 
 ifeq ($(USE_OPENGL_RENDERER),true)
 	LOCAL_SHARED_LIBRARIES += libhwui
+endif
+
+ifeq ($(BOARD_HAVE_BLUETOOTH),true)
+LOCAL_C_INCLUDES += \
+	external/dbus \
+	system/bluetooth/bluez-clean-headers
+LOCAL_CFLAGS += -DHAVE_BLUETOOTH
+LOCAL_SHARED_LIBRARIES += libbluedroid libdbus
 endif
 
 LOCAL_SHARED_LIBRARIES += \

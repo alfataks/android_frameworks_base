@@ -2023,6 +2023,24 @@
   <public type="attr" name="format24Hour" id="0x010103cb" />
   <public type="attr" name="timeZone" id="0x010103cc" />
 
+<!-- ===============================================================
+     AVRCP 1.3 Meta Data Resources
+     =============================================================== -->
+  <eat-comment />
+
+  <java-symbol type="array" name="avrcp_meta_changed_intents" />
+  <java-symbol type="array" name="avrcp_playstate_changed_intents" />
+  <java-symbol type="array" name="avrcp_special_extra_keys" />
+  <java-symbol type="array" name="avrcp_overridable_extra_keys" />
+  <java-symbol type="string" name="com.amazon.mp3.metachanged_track" />
+  <java-symbol type="string" name="com.amazon.mp3.metachanged_artist" />
+  <java-symbol type="string" name="com.amazon.mp3.metachanged_album" />
+  <java-symbol type="string" name="com.amazon.mp3.metachanged_id" />
+  <java-symbol type="string" name="com.amazon.mp3.playstatechanged_track" />
+  <java-symbol type="string" name="com.amazon.mp3.playstatechanged_artist" />
+  <java-symbol type="string" name="com.amazon.mp3.playstatechanged_album" />
+  <java-symbol type="string" name="com.amazon.mp3.playstatechanged_id" />
+
   <public type="style" name="Widget.Holo.CheckedTextView" id="0x010301d9" />
   <public type="style" name="Widget.Holo.Light.CheckedTextView" id="0x010301da" />
   <public type="style" name="Widget.DeviceDefault.CheckedTextView" id="0x010301db" />
