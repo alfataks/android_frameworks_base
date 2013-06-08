@@ -851,8 +851,6 @@ public class NetworkManagementService extends INetworkManagementService.Stub
         } catch (NativeDaemonConnectorException e) {
             throw new IllegalStateException("Unable to communicate to native daemon");
         }
-        BluetoothTetheringDataTracker.getInstance().startReverseTether(iface);
-
     }
 
     // TODO(BT) Remove
@@ -1009,21 +1007,18 @@ public class NetworkManagementService extends INetworkManagementService.Stub
 
     @Override
     public void startAccessPoint(
-            WifiConfiguration wifiConfig, String wlanIface) {
+            WifiConfiguration wifiConfig, String wlanIface, String softapIface) {
         mContext.enforceCallingOrSelfPermission(CONNECTIVITY_INTERNAL, TAG);
         try {
             if (mContext.getResources().getBoolean(
                         com.android.internal.R.bool.config_wifiApFirmwareReload)) {
                 wifiFirmwareReload(wlanIface, "AP");
             }
-            if (mContext.getResources().getBoolean(
-                        com.android.internal.R.bool.config_wifiApStartInterface)) {
-                mConnector.execute("softap", "start", wlanIface);
-            }
+            mConnector.execute("softap", "start", wlanIface);
             if (wifiConfig == null) {
-                mConnector.execute("softap", "set", wlanIface);
+                mConnector.execute("softap", "set", wlanIface, softapIface);
             } else {
-                mConnector.execute("softap", "set", wlanIface, wifiConfig.SSID,
+                mConnector.execute("softap", "set", wlanIface, softapIface, wifiConfig.SSID,
                         getSecurityType(wifiConfig), wifiConfig.preSharedKey);
             }
             mConnector.execute("softap", "startap");
@@ -1059,6 +1054,7 @@ public class NetworkManagementService extends INetworkManagementService.Stub
         mContext.enforceCallingOrSelfPermission(CONNECTIVITY_INTERNAL, TAG);
         try {
             mConnector.execute("softap", "stopap");
+            mConnector.execute("softap", "stop", wlanIface);
             wifiFirmwareReload(wlanIface, "STA");
         } catch (NativeDaemonConnectorException e) {
             throw e.rethrowAsParcelableException();
@@ -1066,13 +1062,13 @@ public class NetworkManagementService extends INetworkManagementService.Stub
     }
 
     @Override
-    public void setAccessPoint(WifiConfiguration wifiConfig, String wlanIface) {
+    public void setAccessPoint(WifiConfiguration wifiConfig, String wlanIface, String softapIface) {
         mContext.enforceCallingOrSelfPermission(CONNECTIVITY_INTERNAL, TAG);
         try {
             if (wifiConfig == null) {
-                mConnector.execute("softap", "set", wlanIface);
+                mConnector.execute("softap", "set", wlanIface, softapIface);
             } else {
-                mConnector.execute("softap", "set", wlanIface, wifiConfig.SSID,
+                mConnector.execute("softap", "set", wlanIface, softapIface, wifiConfig.SSID,
                         getSecurityType(wifiConfig), wifiConfig.preSharedKey);
             }
         } catch (NativeDaemonConnectorException e) {
