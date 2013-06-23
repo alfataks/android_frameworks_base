@@ -1613,7 +1613,7 @@ public class PhoneStatusBar extends BaseStatusBar {
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         if (mClearButton.getAlpha() <= 0.0f) {
-                            mClearButton.setVisibility(View.INVISIBLE);
+                            mClearButton.setVisibility(View.GONE);
                         }
                     }
 
@@ -3448,6 +3448,14 @@ public class PhoneStatusBar extends BaseStatusBar {
 
             cr.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE),
+                    false, this);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_TILES_BG_COLOR),
+                    false, this);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_TILES_BG_PRESSED_COLOR),
                     false, this);
 
             cr.registerContentObserver(

@@ -2624,6 +2624,21 @@ public final class Settings {
          * @hide
          */
         public static final String QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE = "quick_tiles_per_row_duplicate_landscape";
+
+        /**
+         * qs tiles background color
+         *
+         * @hide
+         */
+        public static final String QUICK_TILES_BG_COLOR = "quick_tiles_bg_color";
+
+        /**
+         * qs tiles background color on pressed
+         *
+         * @hide
+         */
+        public static final String QUICK_TILES_BG_PRESSED_COLOR = "quick_tiles_bg_pressed_color";
+
         /**
          * Quick Settings Panel Dynamic Tiles
          *
@@ -2686,6 +2701,12 @@ public final class Settings {
          * @hide
          */
         public static final String QS_DISABLE_PANEL = "qs_disable_panel";
+
+       /**
+         * HALO enabled, should default to 0 (HALO is disabled)
+         * @hide
+         */
+        public static final String HALO_ENABLED = "halo_enabled";
 
         /**
          * HALO, should default to 0 (no, do not show)
