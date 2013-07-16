@@ -1235,10 +1235,9 @@ public class NetworkController extends BroadcastReceiver {
             }
         }
 
-        if (customLabel != null && customLabel.length() > 0) {	
-            combinedLabel = customLabel;	
-            mobileLabel = customLabel;	
-            wifiLabel = customLabel;	
+        if (customLabel != null && customLabel.length() > 0) {
+            combinedLabel = customLabel;
+            mobileLabel = customLabel;
         }
 
         if (DEBUG) {
